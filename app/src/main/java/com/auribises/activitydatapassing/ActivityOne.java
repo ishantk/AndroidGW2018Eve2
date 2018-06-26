@@ -46,13 +46,13 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
         if(v.getId() == R.id.buttonSubmit){
 
             // Extracting the data from UI and setting it into Model
-            pRef.name = eTxtName.getText().toString();
-            pRef.email = eTxtEmail.getText().toString();
+            //pRef.name = eTxtName.getText().toString();
+            //pRef.email = eTxtEmail.getText().toString();
 
-            Toast.makeText(this,"Person Details: "+pRef,Toast.LENGTH_LONG).show();
+            //Toast.makeText(this,"Person Details: "+pRef,Toast.LENGTH_LONG).show();
 
             // Navigate from One Activity to the Other
-            Intent intent = new Intent(ActivityOne.this,ActivityTwo.class);
+            //Intent intent = new Intent(ActivityOne.this,ActivityTwo.class);
 
             //1. Put the data directly into Intent
             //intent.putExtra("keyName",pRef.name);
@@ -66,11 +66,24 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
             intent.putExtra("keyBundle",bundle);*/
 
             //3. Pass User Defined Object
-            intent.putExtra("keyPerson",pRef);
+            //intent.putExtra("keyPerson",pRef);
+            //startActivity(intent);
 
-            startActivity(intent);
+            Intent intent = new Intent(ActivityOne.this,ActivityTwo.class);
+            startActivityForResult(intent,101);
 
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 101 && resultCode == 201){
+            String name = data.getStringExtra("keyName");
+            String email = data.getStringExtra("keyEmail");
+
+            eTxtName.setText(name);
+            eTxtEmail.setText(email);
+        }
     }
 }

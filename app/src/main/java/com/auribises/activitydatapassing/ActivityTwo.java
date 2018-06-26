@@ -22,7 +22,7 @@ public class ActivityTwo extends AppCompatActivity implements View.OnClickListen
 
         btnBack.setOnClickListener(this);
 
-        Intent rcv = getIntent();
+        //Intent rcv = getIntent();
 
         /*if(rcv.hasExtra("keyName") && rcv.hasExtra("keyEmail")) {
 
@@ -44,9 +44,9 @@ public class ActivityTwo extends AppCompatActivity implements View.OnClickListen
             eTxtEmail.setText(email);
         }*/
 
-        Person person = (Person)rcv.getSerializableExtra("keyPerson");
+        /*Person person = (Person)rcv.getSerializableExtra("keyPerson");
         eTxtName.setText(person.name);
-        eTxtEmail.setText(person.email);
+        eTxtEmail.setText(person.email);*/
     }
 
     @Override
@@ -59,6 +59,17 @@ public class ActivityTwo extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if(v.getId() == R.id.buttonBack){
+
+            String name = eTxtName.getText().toString();
+            String email = eTxtEmail.getText().toString();
+
+            Intent data = new Intent(); // Empty Intent, No Source No Dest.
+            // This intent is used to hold only data
+            data.putExtra("keyName",name);
+            data.putExtra("keyEmail",email);
+
+            setResult(201,data);
+
             finish();
         }
     }
