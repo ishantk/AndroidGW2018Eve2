@@ -3,6 +3,8 @@ package com.auribises.activitydatapassing;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -85,5 +87,63 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
             eTxtName.setText(name);
             eTxtEmail.setText(email);
         }
+    }
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // Explicit Menu Creation
+        /*menu.add(1,101,1,"All Songs");
+        menu.add(1,102,1,"Artists");
+        menu.add(1,103,1,"Favourites");
+        menu.add(1,104,1,"Albums");
+        menu.add(1,105,1,"Recently Played");*/
+
+        // Implicit Menu Creation
+        getMenuInflater().inflate(R.menu.mymenu,menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        switch (id){
+            case 101:
+                Toast.makeText(this,"You Clicked All Songs",Toast.LENGTH_LONG).show();
+
+                //Intent intent = new Intent(ActivityOne.this,AllSongsActivity.class);
+                //startActivity(intent);
+
+                break;
+
+            case 102:
+
+                break;
+
+            case 103:
+
+                break;
+
+            case 104:
+
+                break;
+
+            case 105:
+
+                break;
+
+            case R.id.addNumbers:
+                Toast.makeText(this,"You Clicked Add Numbers",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.mulNumbers:
+                Toast.makeText(this,"You Clicked Multiply Numbers",Toast.LENGTH_LONG).show();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
