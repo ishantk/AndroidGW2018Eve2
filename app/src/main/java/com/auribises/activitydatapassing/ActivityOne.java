@@ -94,14 +94,14 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
     public boolean onCreateOptionsMenu(Menu menu) {
 
         // Explicit Menu Creation
-        /*menu.add(1,101,1,"All Songs");
+        menu.add(1,101,1,"All Songs");
         menu.add(1,102,1,"Artists");
         menu.add(1,103,1,"Favourites");
         menu.add(1,104,1,"Albums");
-        menu.add(1,105,1,"Recently Played");*/
+        menu.add(1,105,1,"Recently Played");
 
         // Implicit Menu Creation
-        getMenuInflater().inflate(R.menu.mymenu,menu);
+        //getMenuInflater().inflate(R.menu.mymenu,menu);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -115,8 +115,8 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
             case 101:
                 Toast.makeText(this,"You Clicked All Songs",Toast.LENGTH_LONG).show();
 
-                //Intent intent = new Intent(ActivityOne.this,AllSongsActivity.class);
-                //startActivity(intent);
+                Intent intent = new Intent(ActivityOne.this,AllSongsActivity.class);
+                startActivity(intent);
 
                 break;
 
