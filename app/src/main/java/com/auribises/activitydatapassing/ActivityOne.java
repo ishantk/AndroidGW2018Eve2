@@ -121,7 +121,8 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case 102:
-
+                Intent intent1 = new Intent(ActivityOne.this,NewsActivity.class);
+                startActivity(intent1);
                 break;
 
             case 103:
