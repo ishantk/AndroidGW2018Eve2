@@ -21,6 +21,8 @@ public class ActivityOne extends AppCompatActivity implements View.OnClickListen
     // User defined function, which can be anyname of your choice
     void initViews(){
 
+        getSupportActionBar().setTitle("Welcome");
+
         pRef = new Person();
 
         eTxtName = findViewById(R.id.editTextName);
