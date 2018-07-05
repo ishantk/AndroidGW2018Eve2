@@ -64,7 +64,7 @@ public class MyLocationActivity extends AppCompatActivity implements View.OnClic
 
         txtLocation.setText("Location: "+latitude+" : "+longitude+" : "+speed);
 
-        if(speed >= 80){
+        /*if(speed >= 80){
             SmsManager smsManager = SmsManager.getDefault();
             String number = "+91 99155 71177";
             String msg = "Over speeding vehicle is dangerous !!";
@@ -73,7 +73,7 @@ public class MyLocationActivity extends AppCompatActivity implements View.OnClic
             // Remove the Location Updates as soon we fetch the 1st location
             locationManager.removeUpdates(this);
 
-        }
+        }*/
 
         // Remove the Location Updates as soon we fetch the 1st location
         locationManager.removeUpdates(this);
@@ -81,10 +81,18 @@ public class MyLocationActivity extends AppCompatActivity implements View.OnClic
         // Reverse Geo-coding
         try{
 
-            StringBuilder builder = new StringBuilder();
+            StringBuilder builder = new StringBuilder("Location: "+latitude+":"+longitude+"\n");
             Geocoder geocoder = new Geocoder(this);
             List<Address> addresses = geocoder.getFromLocation(latitude,longitude,5);
+
+
+
             if(addresses !=null && addresses.size()>0){
+
+                for(Address a : addresses){
+
+                }
+
 
                 Address adrs = addresses.get(0);
 
