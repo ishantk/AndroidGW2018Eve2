@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.SEND_SMS" />
-    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
         android:allowBackup="true"
@@ -30,7 +30,14 @@
         </activity>
         <activity android:name=".ViewsActivity" />
         <activity android:name=".MyLocationActivity" />
-        <activity android:name=".SensorActivity"></activity>
+        <activity android:name=".SensorActivity" />
+        <activity android:name=".view.AddUserActivity" />
+
+        <provider
+            android:name=".provider.UserContentProvider"
+            android:authorities="com.auribises.activitydatapassing.usercp"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>
