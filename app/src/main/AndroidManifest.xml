@@ -34,8 +34,8 @@
         <activity android:name=".view.AddUserActivity" />
 
         <provider
-            android:name=".provider.UserContentProvider"
-            android:authorities="com.auribises.activitydatapassing.usercp"
+            android:name=".provider.MyUserContentProvider"
+            android:authorities="com.auribises.activitydatapassing.mycp"
             android:enabled="true"
             android:exported="true"></provider>
     </application>

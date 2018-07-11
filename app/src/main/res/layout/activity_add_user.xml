@@ -9,38 +9,44 @@
     tools:context=".view.AddUserActivity">
 
     <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
+        android:id="@+id/textViewTitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        android:textColor="@color/colorAccent"
+        android:text="Welcome" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_marginTop="20dp"
+        android:hint="Enter Your Name" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/editTextPhone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_marginTop="20dp"
+        android:hint="Enter Your Phone" />
 
     <EditText
-        android:id="@+id/editText6"
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name" />
+        android:layout_marginTop="20dp"
+        android:hint="Enter Your Email" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/buttonAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:layout_marginTop="20dp"
+        android:onClick="clickHandler"
+        android:text="Add User" />
 </LinearLayout>

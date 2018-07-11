@@ -6,6 +6,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.auribises.activitydatapassing.view.AddUserActivity;
+
 public class SplashActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +22,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         public void handleMessage(Message msg) {
             if(msg.what == 101){
-                Intent intent = new Intent(SplashActivity.this,MyLocationActivity.class);
+                Intent intent = new Intent(SplashActivity.this,AddUserActivity.class);
                 startActivity(intent);
                 finish();
             }

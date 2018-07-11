@@ -8,12 +8,14 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-public class UserContentProvider extends ContentProvider {
+import com.auribises.activitydatapassing.Util;
+
+public class MyUserContentProvider extends ContentProvider {
 
     DBHelper dbHelper;
     SQLiteDatabase sqLiteDatabase;
 
-    public UserContentProvider() {
+    public MyUserContentProvider() {
     }
 
     @Override
@@ -31,13 +33,18 @@ public class UserContentProvider extends ContentProvider {
 
     @Override
     public Uri insert(Uri uri, ContentValues values) {
-        // TODO: Implement this to handle requests to insert a new row.
-        throw new UnsupportedOperationException("Not yet implemented");
+       String tabName = uri.getLastPathSegment();
+       long id = sqLiteDatabase.insert(tabName,null,values);
+       Uri dummyUri = Uri.parse("someprot://somedata/"+id);
+       return dummyUri;
     }
 
     @Override
     public boolean onCreate() {
-        // TODO: Implement this to initialize your content provider on startup.
+
+        dbHelper = new DBHelper(getContext(), Util.DB_NAME,null,Util.DB_VERSION);
+        sqLiteDatabase = dbHelper.getWritableDatabase();
+
         return false;
     }
 
@@ -58,12 +65,13 @@ public class UserContentProvider extends ContentProvider {
     class DBHelper extends SQLiteOpenHelper{
 
         public DBHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-            super(context, name, factory, version);
+            super(context, name, factory, version); //1. Create the DB
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-
+            db.execSQL(Util.CREATE_TAB_QUERY); //2. Creation of Table
+            //db.execSQL(Util.CREATE_TAB_QUERY1); //2. Creation of Table
         }
 
         @Override
@@ -71,4 +79,5 @@ public class UserContentProvider extends ContentProvider {
 
         }
     }
+
 }
