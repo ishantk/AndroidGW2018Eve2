@@ -37,7 +37,9 @@
             android:name=".provider.MyUserContentProvider"
             android:authorities="com.auribises.activitydatapassing.mycp"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true" />
+
+        <activity android:name=".view.AllUsersActivity"></activity>
     </application>
 
 </manifest>

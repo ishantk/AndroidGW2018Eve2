@@ -2,9 +2,12 @@ package com.auribises.activitydatapassing.view;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -22,14 +25,33 @@ public class AddUserActivity extends AppCompatActivity {
 
     ContentResolver resolver;
 
+    Button btnAdd;
+
+    boolean updateMode;
+
     void initViews(){
         eTxtName = findViewById(R.id.editTextName);
         eTxtPhone = findViewById(R.id.editTextPhone);
         eTxtEmail = findViewById(R.id.editTextEmail);
+        btnAdd = findViewById(R.id.buttonAdd);
 
         user = new User();
 
         resolver = getContentResolver();
+
+        Intent rcv = getIntent();
+
+        updateMode = rcv.hasExtra("keyUser");
+
+        if(updateMode){
+            user = (User)rcv.getSerializableExtra("keyUser");
+            eTxtName.setText(user.name);
+            eTxtPhone.setText(user.phone);
+            eTxtEmail.setText(user.email);
+            btnAdd.setText("Update User");
+        }
+
+
     }
 
     @Override
@@ -41,13 +63,21 @@ public class AddUserActivity extends AppCompatActivity {
 
     void addUser(){
 
+
         ContentValues values = new ContentValues();
         values.put(Util.COL_NAME,user.name);
         values.put(Util.COL_PHONE,user.phone);
         values.put(Util.COL_EMAIL,user.email);
 
-        Uri uri = resolver.insert(Util.USER_URI,values);
-        Toast.makeText(this,user.name+" Added "+uri.getLastPathSegment(),Toast.LENGTH_LONG).show();
+        if(!updateMode) {
+            Uri uri = resolver.insert(Util.USER_URI, values);
+            Toast.makeText(this, user.name + " Added " + uri.getLastPathSegment(), Toast.LENGTH_LONG).show();
+        }else{
+            String where = Util.COL_ID+" = "+user.id;
+            int i = resolver.update(Util.USER_URI,values,where,null);
+            Toast.makeText(this, user.name + " Updated " + i, Toast.LENGTH_LONG).show();
+            finish();
+        }
 
     }
 
@@ -57,6 +87,27 @@ public class AddUserActivity extends AppCompatActivity {
         user.email = eTxtEmail.getText().toString();
 
         addUser();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        if(!updateMode) {
+            menu.add(1, 101, 1, "All Users");
+        }
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if(item.getItemId() == 101){
+            Intent intent = new Intent(AddUserActivity.this,AllUsersActivity.class);
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
